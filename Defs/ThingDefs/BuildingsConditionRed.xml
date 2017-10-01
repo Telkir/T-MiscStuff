@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Buildings>
+
+  <ThingDef ParentName="BuildingBase">
+		<defName>ThreatSensor</defName>
+		<label>threat sensor</label>
+		<thingClass>ConditionRed.ThreatSensor</thingClass>
+    <graphicData>
+      <texPath>Things/Building/ThreatSensor</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shadowData>
+        <volume>(0.4, 0.7, 0.4)</volume>
+      </shadowData>
+    </graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+    <statBases>
+      <MaxHitPoints>75</MaxHitPoints>
+      <WorkToBuild>1000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-20</Beauty>
+    </statBases>
+		<selectable>true</selectable>
+		<description>A radar linked to a simple threat-monitoring AI. When powered it assesses the nearby area and provides data that allows alert lamps to function. Cannot be built under a roof.</description>
+    <costList>
+      <Steel>50</Steel>
+      <Component>1</Component>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>200</basePowerConsumption>
+        <shortCircuitInRain>false</shortCircuitInRain>
+      </li>
+    </comps>
+		<designationCategory>Misc</designationCategory>
+		<rotatable>false</rotatable>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+    <tickerType>Normal</tickerType>
+  </ThingDef>
+	
+  <ThingDef ParentName="StandingLampBase">
+    <defName>AlertLamp</defName>
+    <label>alert lamp</label>
+    <thingClass>ConditionRed.AlertLamp</thingClass>
+    <description>A smart lamp whose color will change to indicate the colony's current threat level. Requires a powered threat sensor in order to function correctly. Lamps glow faint green when nothing dangerous is nearby, yellow if your colonists are not outnumbered, and red if they are.</description>
+    <costList>
+      <Steel>15</Steel>
+      <Component>1</Component>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <compClass>CompGlower</compClass>
+        <glowRadius>8</glowRadius>
+        <glowColor>(0,50,100,0)</glowColor>
+      </li>
+    </comps>
+    <researchPrerequisites><li>ColoredLights</li></researchPrerequisites>
+    <tickerType>Normal</tickerType>
+  </ThingDef>
+  
+</Buildings>
